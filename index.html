@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next_Level_Mark - WhatsApp Unban Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s, color 0.3s;
+        }
+        
+        :root {
+            --primary: #25D366;
+            --secondary: #128C7E;
+            --accent: #075E54;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text: #1e293b;
+            --text-light: #f1f5f9;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme {
+            --light: #0f172a;
+            --dark: #f8fafc;
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --text: #f1f5f9;
+            --text-light: #1e293b;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light) 0%, #e2e8f0 100%);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .dark-theme body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #25D366, #128C7E, #075E54);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .quote-marquee {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 0;
+            margin: 20px 0 40px;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .quote {
+            font-style: italic;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+            padding: 0 20px;
+            font-size: 1.1rem;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+        
+        .theme-btn {
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+        
+        .theme-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .content {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .form-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            flex: 1;
+            min-width: 350px;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .info-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .info-title {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .info-text {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .steps {
+            margin-top: 25px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .music-player {
+            text-align: center;
+            padding: 25px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .music-title {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #833AB4, #FD1D1D, #FCAF45);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+        
+        .creator {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .creator:hover {
+            text-decoration: underline;
+        }
+        
+        .success-message {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .ban-reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .reason {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        
+        .reason i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .form-container, .info-container {
+                padding: 25px;
+            }
+            
+            .content {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <button class="theme-btn active" id="light-theme"><i class="fas fa-sun"></i></button>
+        <button class="theme-btn" id="dark-theme"><i class="fas fa-moon"></i></button>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1 class="logo">𝐍𝐞𝐱𝐭_𝐋𝐞𝐯𝐞𝐥_𝐌𝐚𝐫𝐤</h1>
+            <div class="quote-marquee">
+                <div class="quote" id="quote">Technology is best when it brings people together. The future of communication is in your hands.</div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <div class="form-container">
+                <h2 class="form-title">WhatsApp Unban Request</h2>
+                <form id="unbanForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your WhatsApp number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="banDate">When were you banned?</label>
+                        <input type="date" id="banDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason">Why do you think you were banned? (Optional)</label>
+                        <textarea id="reason" rows="3" placeholder="Please provide any details that might help..." style="width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #cbd5e1; background: rgba(255, 255, 255, 0.1); color: var(--text); font-size: 1rem;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Unban Request</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle" style="color: var(--primary); font-size: 2.5rem; margin-bottom: 10px;"></i>
+                        <h3>Request Submitted Successfully!</h3>
+                        <p>We've received your unban request and will contact WhatsApp support shortly.</p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="info-container">
+                <div class="info-card">
+                    <h3 class="info-title">How Our Service Works</h3>
+                    <p class="info-text">We help you regain access to your WhatsApp account by submitting official unban requests to WhatsApp support.</p>
+                    
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Submit Your Request</strong>
+                                <p>Fill out the form with your account details</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Review Process</strong>
+                                <p>We verify your information and ban details</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>Contact WhatsApp Support</strong>
+                                <p>We submit an official unban request to WhatsApp</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Account Recovery</strong>
+                                <p>You regain access to your account within 24-48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3 class="info-title">Common Ban Reasons</h3>
+                    <p>Accounts are typically banned for these reasons:</p>
+                    
+                    <div class="ban-reasons">
+                        <div class="reason">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Spamming</p>
+                        </div>
+                        <div class="reason">
+                            <i class="fas fa-user-slash"></i>
+                            <p>Fake Account</p>
+                        </div>
+                        <div class="reason">
+                            <i class="fas fa-ban"></i>
+                            <p>Violating Terms</p>
+                        </div>
+                        <div class="reason">
+                            <i class="fas fa-robot"></i>
+                            <p>Automated Messages</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="music-player">
+                    <h3 class="music-title">Background Music</h3>
+                    <div class="player-controls">
+                        <button class="control-btn" id="playBtn"><i class="fas fa-play"></i></button>
+                        <button class="control-btn" id="pauseBtn"><i class="fas fa-pause"></i></button>
+                        <button class="control-btn" id="stopBtn"><i class="fas fa-stop"></i></button>
+                    </div>
+                    <audio id="backgroundMusic" loop>
+                        <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-container">
+            <a href="https://wa.me/254110550356" class="social-btn whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/next_level_mark" class="social-btn instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        
+        <footer>
+            <p>Made with ❣️ by <a href="https://wa.me/254110550356" class="creator">Mark</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const lightThemeBtn = document.getElementById('light-theme');
+        const darkThemeBtn = document.getElementById('dark-theme');
+        const body = document.body;
+        
+        lightThemeBtn.addEventListener('click', () => {
+            body.classList.remove('dark-theme');
+            lightThemeBtn.classList.add('active');
+            darkThemeBtn.classList.remove('active');
+        });
+        
+        darkThemeBtn.addEventListener('click', () => {
+            body.classList.add('dark-theme');
+            darkThemeBtn.classList.add('active');
+            lightThemeBtn.classList.remove('active');
+        });
+        
+        // Music Player
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        playBtn.addEventListener('click', () => {
+            backgroundMusic.play();
+        });
+        
+        pauseBtn.addEventListener('click', () => {
+            backgroundMusic.pause();
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            backgroundMusic.pause();
+            backgroundMusic.currentTime = 0;
+        });
+        
+        // Auto-play music on page load
+        window.addEventListener('load', () => {
+            backgroundMusic.play().catch(e => {
+                console.log("Autoplay prevented. User must interact first.");
+            });
+        });
+        
+        // Form Submission
+        const unbanForm = document.getElementById('unbanForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        unbanForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Show success message
+            successMessage.style.display = 'block';
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset form after 3 seconds
+            setTimeout(() => {
+                unbanForm.reset();
+                successMessage.style.display = 'none';
+            }, 5000);
+        });
+        
+        // Set default date to today
+        document.getElementById('banDate').valueAsDate = new Date();
+        
+        // Motivational quotes
+        const quotes = [
+            "The only way to do great work is to love what you do. - Steve Jobs",
+            "Innovation distinguishes between a leader and a follower. - Steve Jobs",
+            "The best way to predict the future is to invent it. - Alan Kay",
+            "Technology is nothing. What's important is that you have faith in people. - Steve Jobs",
+            "The advance of technology is based on making it fit in so that you don't really even notice it. - Mark Weiser",
+            "The future is still so much bigger than the past. - Tim Berners-Lee",
+            "Any sufficiently advanced technology is indistinguishable from magic. - Arthur C. Clarke",
+            "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
+            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+            "Strive not to be a success, but rather to be of value. - Albert Einstein",
+            "Communication works for those who work at it. - John Powell",
+            "The art of communication is the language of leadership. - James Humes"
+        ];
+        
+        const quoteElement = document.getElementById('quote');
+        let quoteIndex = 0;
+        
+        function changeQuote() {
+            quoteElement.textContent = quotes[quoteIndex];
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+        }
+        
+        // Change quote every 10 seconds
+        setInterval(changeQuote, 10000);
+        changeQuote();
+    </script>
+</body>
+</html>
